@@ -4,8 +4,8 @@
 
 | Padrón | Alumnos                 |
 |--------|-------------------------|
-| 104928 | Kamal                   |
+| 104928 | Hosainm Kamal           |
 |  96467 | Chávez Cabanillas, José |
 | 101589 | Álvarez, Juan Manuel    |
-|        | Ignacio                 |
-|        | Alan                    |
+|        | Pereyra, Ignacio        |
+|        | Goyzueta, Alan          |
