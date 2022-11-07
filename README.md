@@ -6,6 +6,6 @@
 |--------|-------------------------|
 |        | Kamal                   |
 |  96467 | Chávez Cabanillas, José |
-| 101589 | Juan Manuel Álvarez     |
+| 101589 | Álvarez, Juan Manuel    |
 |        | Ignacio                 |
 |        | Alan                    |
