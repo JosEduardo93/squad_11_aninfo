@@ -1,6 +1,6 @@
-# squad_11_aninfo
+# Modelo de Proyectos
 
-## Modelo de Proyectos
+### squad_11_aninfo
 
 | Padrón | Alumnos                 |
 |--------|-------------------------|
