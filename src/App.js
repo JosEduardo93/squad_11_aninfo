@@ -3,30 +3,6 @@ const router = require('./routes/index');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-// Swagger
-const swaggerJsDoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
-const path = require('path');
-
-const options = {
-    definition: {
-        openapi: "3.0.0",
-        info: {
-            title: "Module Proyect",
-            version: "1.0.0",
-            description:
-              "API Module Project - MongoDB",
-        },
-        servers: [
-            {
-                url: "http://localhost:8080"
-            }
-        ]
-    },
-    apis: [`${path.join(__dirname, './routes/*.js')}`],
-};
-
-
 const app = express(); 
 const PORT = process.env.PORT || 8080; 
 
@@ -38,9 +14,7 @@ app.get("/", (req, res) => {
 // midleware
 app.use(express.json());
 app.use("/api", router);
-app.use('/api-doc', 
-    swaggerUi.serve, 
-    swaggerUi.setup(swaggerJsDoc(options)));
+require('./swagger-setup')(app);
 
 // connection a MongoDB
 mongoose
