@@ -1,4 +1,4 @@
-# squad_11_aninfo
+# Squad 11 aninfo
 
 ## Modelo de Proyectos
 
