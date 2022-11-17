@@ -1,5 +1,6 @@
 const express = require("express"); 
 const router = require('./routes/index');
+const projectRouter = require('./routes/projectRoutes')
 const mongoose = require('mongoose');
 require('dotenv').config();
 
@@ -14,6 +15,7 @@ app.get("/", (req, res) => {
 // midleware
 app.use(express.json());
 app.use("/api", router);
+app.use('/project', projectRouter);
 require('./swagger-setup')(app);
 
 // connection a MongoDB
@@ -25,3 +27,4 @@ mongoose
 app.listen(PORT, () => { 
     console.log(`API is listening on port ${PORT}`); 
 });
+
