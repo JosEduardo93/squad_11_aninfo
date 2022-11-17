@@ -9,14 +9,6 @@ const projectSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  initDate: {
-    type: Date,
-    required: false
-  },
-  endDate: {
-    type: Date,
-    required : false
-  },
   idealInitDate : {
     type: Date,
     required : true
@@ -28,6 +20,14 @@ const projectSchema = mongoose.Schema({
   invertedHours : {
     type : Number, // deberia arrancar siempre en 0
     required: true
+  },
+  initDate: {
+    type: Date,
+    required: false
+  },
+  endDate: {
+    type: Date,
+    required : false
   }
 });
 
