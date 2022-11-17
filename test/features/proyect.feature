@@ -9,9 +9,9 @@ Feature: Prueba de apis
     Scenario: Edit Project 
     Given A Project id
     When Edit a Project
-    Then 
+    Then the project was edited
 
     Scenario: Delete a Project
     Given a Project id
     When I delete that id
-    Then I delete that Project
+    Then that Project was deleted

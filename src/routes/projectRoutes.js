@@ -33,11 +33,6 @@ const router = express.Router();
  *          
  */
 
-
-
-
-
-
 /**
  * @swagger
  * /api/projects:
@@ -79,7 +74,6 @@ router.get("/projects", projectController.getAllProject)
 */
 router.get("/projects/:id", projectController.getById);
 
-
 /**
  * @swagger
  * /api/projects:
@@ -100,7 +94,6 @@ router.get("/projects/:id", projectController.getById);
  *        description: failed created
  */
  router.post("/projects", projectController.postProject);
-
 
 /**
  * @swagger
@@ -133,7 +126,6 @@ router.get("/projects/:id", projectController.getById);
  *        description: user not found
  */
 router.put("/projects/:id/dates", projectController.updateDate);
-
 
 /**
  * @swagger
@@ -225,8 +217,6 @@ router.put("/projects/:id/description", projectController.updateDescription);
  */
 router.put("/projects/:id/projectName", projectController.updateName);
 
-
-
 /**
  * @swagger
  * /api/projects/{id}:
@@ -246,6 +236,6 @@ router.put("/projects/:id/projectName", projectController.updateName);
  *      404:
  *        description: project not found
  */
- router.delete("/projects/:id", projectController.deleteById);
+router.delete("/projects/:id", projectController.deleteById);
 
 module.exports = router
