@@ -7,9 +7,8 @@
 | 104928 | Hosain, Kamal           |
 |  96467 | Chávez Cabanillas, José |
 | 101589 | Álvarez, Juan Manuel    |
-|        | Pereyra, Ignacio        |
+| 106022 | Pereyra, Ignacio        |
 | 102988 | Goyzueta, Alan          |
-
 
 ## Build & Compile
 
