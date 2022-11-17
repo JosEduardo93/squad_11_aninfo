@@ -9,3 +9,11 @@
 | 101589 | Álvarez, Juan Manuel    |
 |        | Pereyra, Ignacio        |
 |        | Goyzueta, Alan          |
+
+
+## Build & Compile
+
+``` 
+    npm install
+    npm run start
+```
