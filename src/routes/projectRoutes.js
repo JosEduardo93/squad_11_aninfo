@@ -33,26 +33,10 @@ const router = express.Router();
  *          
  */
 
-/**
- * @swagger
- * /api/projects:
- *  post:
- *    summary: create a new user
- *    tags: [Projects]
- *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            type: object
- *            $ref: '#components/schemas/Project'
- *    responses:
- *      200:
- *        description: new project created
- *      404:
- *        description: failed created
- */
-router.post("/projects", projectController.postProject);
+
+
+
+
 
 /**
  * @swagger
@@ -95,7 +79,28 @@ router.get("/projects", projectController.getAllProject)
 */
 router.get("/projects/:id", projectController.getById);
 
-router.delete("/projects/:id", projectController.deleteById);
+
+/**
+ * @swagger
+ * /api/projects:
+ *  post:
+ *    summary: create a new user
+ *    tags: [Projects]
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            $ref: '#components/schemas/Project'
+ *    responses:
+ *      200:
+ *        description: new project created
+ *      404:
+ *        description: failed created
+ */
+ router.post("/projects", projectController.postProject);
+
 
 /**
  * @swagger
@@ -128,6 +133,119 @@ router.delete("/projects/:id", projectController.deleteById);
  *        description: user not found
  */
 router.put("/projects/:id/dates", projectController.updateDate);
-// router.put("/projects/:id/date/:endDate", projectController.updateEndDate);
+
+
+/**
+ * @swagger
+ * /api/projects/{id}/hours:
+ *  put:
+ *    summary: add work hours
+ *    tags: [Projects]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: the project id
+ *    requestBody:
+ *      required: true
+ *      content: 
+ *        application/json:
+ *          schema: 
+ *              type: object
+ *              properties:
+ *                  hours:
+ *                      type: integer
+ *    responses:
+ *      200:
+ *        description: add inverted hours
+ *      404:
+ *        description: hours not added
+ */
+router.put("/projects/:id/hours", projectController.addInvertedHours)
+
+/**
+ * @swagger
+ * /api/projects/{id}/description:
+ *  put:
+ *    summary: update a project description
+ *    tags: [Projects]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: the user id
+ *    requestBody:
+ *      required: true
+ *      content: 
+ *        application/json:
+ *          schema: 
+ *              type: object
+ *              properties:
+ *                  description: 
+ *                      type: string                  
+ *    responses:
+ *      200:
+ *        description: project description update
+ *      404:
+ *        description: project not found
+ */
+router.put("/projects/:id/description", projectController.updateDescription);
+
+/**
+ * @swagger
+ * /api/projects/{id}/projectName:
+ *  put:
+ *    summary: update a project name
+ *    tags: [Projects]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: the user id
+ *    requestBody:
+ *      required: true
+ *      content: 
+ *        application/json:
+ *          schema: 
+ *              type: object
+ *              properties:
+ *                  name: 
+ *                      type: string                  
+ *    responses:
+ *      200:
+ *        description: project name update
+ *      404:
+ *        description: project not found
+ */
+router.put("/projects/:id/projectName", projectController.updateName);
+
+
+
+/**
+ * @swagger
+ * /api/projects/{id}:
+ *  delete:
+ *    summary: delete a project
+ *    tags: [Projects]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: the project id
+ *    responses:
+ *      200:
+ *        description: project deleted
+ *      404:
+ *        description: project not found
+ */
+ router.delete("/projects/:id", projectController.deleteById);
 
 module.exports = router

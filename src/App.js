@@ -1,5 +1,4 @@
 const express = require("express"); 
-const router = require('./routes/index');
 const projectRouter = require('./routes/projectRoutes')
 const mongoose = require('mongoose');
 require('dotenv').config();
@@ -14,7 +13,6 @@ app.get("/", (req, res) => {
 
 // midleware
 app.use(express.json());
-app.use("/api", router);
 app.use('/api', projectRouter);
 require('./swagger-setup')(app);
 
