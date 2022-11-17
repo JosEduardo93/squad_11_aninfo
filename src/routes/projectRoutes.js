@@ -199,7 +199,7 @@ router.put("/projects/:id/description", projectController.updateDescription);
  * @swagger
  * /api/projects/{id}/projectName:
  *  put:
- *    summary: update a project name by id
+ *    summary: update a project name
  *    tags: [Projects]
  *    parameters:
  *      - in: path
@@ -231,7 +231,7 @@ router.put("/projects/:id/projectName", projectController.updateName);
  * @swagger
  * /api/projects/{id}:
  *  delete:
- *    summary: delete a project by id
+ *    summary: delete a project
  *    tags: [Projects]
  *    parameters:
  *      - in: path
