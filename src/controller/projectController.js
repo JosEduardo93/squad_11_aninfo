@@ -34,20 +34,25 @@ const deleteById = (req, res) => {
 
 const updateDate = (req, res) => {
     const { id } = req.params;
-    const initDate = Date.parse(req.body.initDate);
-    const endDate = Date.parse(req.body.endDate);
-    if (initDate & endDate) {
-        projectSchema
-            .updateOne({ _id: id}, { $set: { initDate, endDate }})
-            .then((data) => res.json(data))
-            .catch((error) => res.json({ message: error}))
-    }
+    let toUpdate = req.body;
+    
+    Object.keys(toUpdate).forEach(key => {
+        if( !toUpdate[key]){
+            delete toUpdate[key];
+        }
+        else{
+            toUpdate[key] = Date.parse(toUpdate[key])
+        }       
+    });
+    projectSchema
+        .updateOne({ _id: id}, { $set: toUpdate })
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error}))
 };
 
  const addInvertedHours = async (req,res) =>{
     const { id } = req.params;
     const hours = req.body.hours;
-
     const project = await projectSchema.findById(id);
     const invertedHours = project.invertedHours + hours;
     projectSchema
