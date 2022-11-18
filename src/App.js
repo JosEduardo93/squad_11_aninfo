@@ -1,5 +1,6 @@
 const express = require("express"); 
 const projectRouter = require('./routes/projectRoutes')
+const taskRouter = require('./routes/taskRoutes')
 const mongoose = require('mongoose');
 require('dotenv').config();
 
@@ -16,7 +17,7 @@ app.use(express.json());
 app.use('/api', projectRouter);
 require('./swagger-setup')(app);
 
-// connection a MongoDB
+// connection to MongoDB
 mongoose
     .connect(process.env.URL)
     .then(() => console.log('Connect to MongoDB'))

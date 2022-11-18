@@ -11,25 +11,25 @@ const router = express.Router();
  *      properties:
  *        name: 
  *          type: string
- *          descrption: name project
+ *          description: project name
  *        description:
  *          type: string
- *          description: description project
+ *          description: project description
  *        idealInitDate:
  *          type: string
- *          description: date init project
+ *          description: project ideal init date
  *        idealEndDate:
  *          type: string
- *          description: date end project
+ *          description: project ideal end date
  *        invertedHours:
  *          type: integer
- *          description: inverted hour project
+ *          description: project inverted hours
  *        initDate:
  *          type: string
- *          description: init date project
+ *          description: project real init date
  *        endDate:
  *          type: string
- *          description: end date project
+ *          description: project real end date
  *          
  */
 
