@@ -31,10 +31,14 @@ const updateDate = (req, res) => {
     
     Object.keys(toUpdate).forEach(key => {
         if(toUpdate[key])
-            toUpdate[key] = Date.parse(toUpdate[key])   
+            try {
+                Date.parse(toUpdate[key])
+            } 
+            catch (error){
+                res.json({ message : error})
+            }
         else
-            delete toUpdate[key];
-             
+            delete toUpdate[key];         
     });
     taskSchema
         .updateOne({ _id: id}, { $set: toUpdate })

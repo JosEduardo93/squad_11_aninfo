@@ -33,26 +33,6 @@ const router = express.Router();
  *          
  */
 
-/**
- * @swagger
- * /api/projects:
- *  post:
- *    summary: create a new user
- *    tags: [Projects]
- *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            type: object
- *            $ref: '#components/schemas/Project'
- *    responses:
- *      200:
- *        description: new project created
- *      404:
- *        description: failed created
- */
-router.post("/projects", projectController.postProject);
 
 /**
  * @swagger
@@ -94,6 +74,77 @@ router.get("/projects", projectController.getAllProject)
  *              $ref: '#components/schemas/Project'
 */
 router.get("/projects/:id", projectController.getById);
+
+
+/**
+ * @swagger
+ * /api/projects:
+ *  post:
+ *    summary: create a new user
+ *    tags: [Projects]
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            $ref: '#components/schemas/Project'
+ *    responses:
+ *      200:
+ *        description: new project created
+ *      404:
+ *        description: failed created
+ */
+ router.post("/projects", projectController.postProject);
+
+
+/**
+ * @swagger
+ * /api/projects/{id}/update:
+ *  put:
+ *    summary: update a project
+ *    tags: [Projects]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: the user id
+ *    requestBody:
+ *      required: true
+ *      content: 
+ *        application/json:
+ *          schema: 
+ *              type: object
+ *              properties:
+ *                  name: 
+ *                      type: string
+ *                  description: 
+ *                      type: string
+ *                  idealInitDate:
+ *                      type: string
+ *                  idealEndDate:
+ *                      type: string
+ *                  invertedHours:
+ *                      type: integer
+ *                  initDate:
+ *                      type: string
+ *                  endDate:
+ *                      type: string
+ *    responses:
+ *      200:
+ *        description: project updated
+ *      404:
+ *        description: userNotFound
+ */
+ router.put("/projects/:id/update", projectController.updateProject);
+
+
+ ////////
+
+
+
 
 
 /**
