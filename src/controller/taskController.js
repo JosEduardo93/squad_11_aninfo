@@ -30,7 +30,7 @@ const updateDate = (req, res) => {
     let toUpdate = req.body;
     
     Object.keys(toUpdate).forEach(key => {
-        if(!toUpdate[key])
+        if(toUpdate[key])
             toUpdate[key] = Date.parse(toUpdate[key])   
         else
             delete toUpdate[key];
