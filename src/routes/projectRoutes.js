@@ -36,6 +36,27 @@ const router = express.Router();
 /**
  * @swagger
  * /api/projects:
+ *  post:
+ *    summary: create a new user
+ *    tags: [Projects]
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            $ref: '#components/schemas/Project'
+ *    responses:
+ *      200:
+ *        description: new project created
+ *      404:
+ *        description: failed created
+ */
+router.post("/projects", projectController.postProject);
+
+/**
+ * @swagger
+ * /api/projects:
  *  get:
  *   summary: get all projects
  *   tags: [Projects]
@@ -74,26 +95,6 @@ router.get("/projects", projectController.getAllProject)
 */
 router.get("/projects/:id", projectController.getById);
 
-/**
- * @swagger
- * /api/projects:
- *  post:
- *    summary: create a new user
- *    tags: [Projects]
- *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            type: object
- *            $ref: '#components/schemas/Project'
- *    responses:
- *      200:
- *        description: new project created
- *      404:
- *        description: failed created
- */
- router.post("/projects", projectController.postProject);
 
 /**
  * @swagger

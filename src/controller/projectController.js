@@ -78,9 +78,9 @@ module.exports  = {
     postProject,
     getAllProject,
     getById,
-    deleteById,
     updateDate,
     updateDescription,
     updateName,
-    addInvertedHours
+    addInvertedHours,
+    deleteById
 };

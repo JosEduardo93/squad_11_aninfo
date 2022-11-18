@@ -18,6 +18,7 @@ const getTaskById = (req, res) => {
 
 const postTask = (req, res) => {
     const task = taskSchema(req.body);
+    task.status = "pending";
     task
         .save()
         .then((data) => res.json(data))
@@ -75,6 +76,15 @@ const updateResponsible = (req, res) => {
         .catch((error) => res.json({ message: error}))
 };
 
+const updateStatus = (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+    taskSchema
+        .updateOne({ _id: id}, { $set: {status}})
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error}))
+};
+
 const deleteById = (req, res) => {
     const { id } = req.params;
     taskSchema
@@ -91,6 +101,7 @@ module.exports  = {
     updateDate,
     updateDescription,
     updateName,
+    updateStatus,
     addInvertedHours,
     updateResponsible
 };

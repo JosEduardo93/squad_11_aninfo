@@ -32,7 +32,11 @@ const taskSchema = mongoose.Schema({
       endDate: {
         type: Date,
         required : false
+      },
+      status: {
+        type: String,
+        required : false
       }
-})
+});
 
 module.exports = mongoose.model('Task', taskSchema);

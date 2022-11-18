@@ -33,8 +33,31 @@ const router = express.Router();
  *        endDate:
  *          type: string
  *          description: task real end date
- *          
+ *        status:
+ *          type: string
+ *          description: task state         
  */
+
+/**
+ * @swagger
+ * /api/tasks:
+ *  post:
+ *    summary: create a new task
+ *    tags: [Tasks]
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            $ref: '#components/schemas/Task'
+ *    responses:
+ *      200:
+ *        description: new task created
+ *      404:
+ *        description: failed creating task
+ */
+ router.post("/tasks", taskController.postTask);
 
 /**
  * @swagger
@@ -78,26 +101,6 @@ router.get("/tasks", taskController.getAllTasks);
 */
 router.get("/tasks/:id", taskController.getTaskById);
 
-/**
- * @swagger
- * /api/tasks:
- *  post:
- *    summary: create a new task
- *    tags: [Tasks]
- *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            type: object
- *            $ref: '#components/schemas/Task'
- *    responses:
- *      200:
- *        description: new task created
- *      404:
- *        description: failed creating task
- */
- router.post("/tasks", taskController.postTask);
 
 /**
  * @swagger
@@ -253,6 +256,36 @@ router.put("/tasks/:id/name", taskController.updateName);
 
 /**
  * @swagger
+ * /api/tasks/{id}/status:
+ *  put:
+ *    summary: task update status
+ *    tags: [Tasks]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: the task id
+ *    requestBody:
+ *      required: true
+ *      content: 
+ *        application/json:
+ *          schema: 
+ *              type: object
+ *              properties:
+ *                  status: 
+ *                      type: string                  
+ *    responses:
+ *      200:
+ *        description: task status updated
+ *      404:
+ *        description: task not found
+ */
+router.put("/tasks/:id/status", taskController.updateStatus);
+
+/**
+ * @swagger
  * /api/tasks/{id}:
  *  delete:
  *    summary: delete a task
@@ -272,4 +305,4 @@ router.put("/tasks/:id/name", taskController.updateName);
  */
 router.delete("/tasks/:id", taskController.deleteById);
 
-module.exports = router
+module.exports = router;
