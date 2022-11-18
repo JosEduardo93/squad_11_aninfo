@@ -8,14 +8,6 @@ const getAllProject = (req, res) => {
         .catch((error) => res.json({ message: error }));
 };
 
-const postProject = (req, res) => {
-    const project = projectSchema(req.body);
-    project
-      .save()
-      .then((data) => res.json(data))
-      .catch((error) => res.json({ message: error }))
-};
-
 const getById = (req, res) => {
     const { id } = req.params;
     projectSchema
@@ -24,30 +16,38 @@ const getById = (req, res) => {
     .catch((error) => res.json({ message: error }))
 };
 
-const deleteById = (req, res) => {
-    const { id } = req.params;
-    projectSchema
-      .remove({_id : id})
+const postProject = (req, res) => {
+    const project = projectSchema(req.body);
+    project
+      .save()
       .then((data) => res.json(data))
       .catch((error) => res.json({ message: error }))
-  };
+};
 
 const updateDate = (req, res) => {
     const { id } = req.params;
-    const initDate = Date.parse(req.body.initDate);
-    const endDate = Date.parse(req.body.endDate);
-    if (initDate & endDate) {
-        projectSchema
-            .updateOne({ _id: id}, { $set: { initDate, endDate }})
-            .then((data) => res.json(data))
-            .catch((error) => res.json({ message: error}))
-    }
+    let toUpdate = req.body;
+
+    Object.keys(toUpdate).forEach(key => {
+        if(toUpdate[key])
+            try {
+                Date.parse(toUpdate[key])
+            } 
+            catch (error){
+                res.json({ message : error})
+            }
+        else
+            delete toUpdate[key];    
+    });
+    projectSchema
+        .updateOne({ _id: id}, { $set: toUpdate })
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error}))
 };
 
  const addInvertedHours = async (req,res) =>{
     const { id } = req.params;
     const hours = req.body.hours;
-
     const project = await projectSchema.findById(id);
     const invertedHours = project.invertedHours + hours;
     projectSchema
@@ -74,6 +74,35 @@ const updateDescription = (req, res) => {
         .catch((error) => res.json({ message: error}))
 };
 
+const updateProject = (req, res) => {
+    const { id } = req.params;
+    let toUpdate  = req.body;
+    
+    Object.keys(toUpdate).forEach(key => {
+        if(key.includes("Date"))
+            try {
+                Date.parse(toUpdate[key])
+            } catch (error) {
+                res.json({message : error})
+            }
+        if(!toUpdate[key])    
+            delete toUpdate[key]
+    })
+
+    projectSchema
+        .updateOne({ _id: id}, { $set: toUpdate })
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error}))
+}
+
+const deleteById = (req, res) => {
+    const { id } = req.params;
+    projectSchema
+      .remove({_id : id})
+      .then((data) => res.json(data))
+      .catch((error) => res.json({ message: error }))
+  };
+
 module.exports  = {
     postProject,
     getAllProject,
@@ -82,5 +111,6 @@ module.exports  = {
     updateDescription,
     updateName,
     addInvertedHours,
-    deleteById
+    deleteById,
+    updateProject
 };

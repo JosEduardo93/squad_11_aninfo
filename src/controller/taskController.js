@@ -27,14 +27,23 @@ const postTask = (req, res) => {
 
 const updateDate = (req, res) => {
     const { id } = req.params;
-    const initDate = Date.parse(req.body.initDate);
-    const endDate = Date.parse(req.body.endDate);
-    if (initDate & endDate) {
-        taskSchema
-            .updateOne({ _id: id}, { $set: { initDate, endDate }})
-            .then((data) => res.json(data))
-            .catch((error) => res.json({ message: error}))
-    }
+    let toUpdate = req.body;
+    
+    Object.keys(toUpdate).forEach(key => {
+        if(toUpdate[key])
+            try {
+                Date.parse(toUpdate[key])
+            } 
+            catch (error){
+                res.json({ message : error})
+            }
+        else
+            delete toUpdate[key];         
+    });
+    taskSchema
+        .updateOne({ _id: id}, { $set: toUpdate })
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error}))
 };
 
 const addInvertedHours = async (req,res) =>{
