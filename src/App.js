@@ -15,6 +15,7 @@ app.get("/", (req, res) => {
 // midleware
 app.use(express.json());
 app.use('/api', projectRouter);
+app.use('/api', taskRouter);
 require('./swagger-setup')(app);
 
 // connection to MongoDB
