@@ -35,14 +35,12 @@ const deleteById = (req, res) => {
 const updateDate = (req, res) => {
     const { id } = req.params;
     let toUpdate = req.body;
-    
+
     Object.keys(toUpdate).forEach(key => {
-        if( !toUpdate[key]){
-            delete toUpdate[key];
-        }
-        else{
+        if(toUpdate[key])
             toUpdate[key] = Date.parse(toUpdate[key])
-        }       
+        else
+            delete toUpdate[key];    
     });
     projectSchema
         .updateOne({ _id: id}, { $set: toUpdate })
