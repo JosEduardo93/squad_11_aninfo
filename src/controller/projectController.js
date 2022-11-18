@@ -21,16 +21,16 @@ const getById = (req, res) => {
     projectSchema
     .findById(id)
     .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
-}  
+    .catch((error) => res.json({ message: error }))
+};
 
 const deleteById = (req, res) => {
     const { id } = req.params;
     projectSchema
       .remove({_id : id})
       .then((data) => res.json(data))
-      .catch((error) => res.json({ message: error }));
-  }
+      .catch((error) => res.json({ message: error }))
+  };
 
 const updateDate = (req, res) => {
     const { id } = req.params;
@@ -42,7 +42,7 @@ const updateDate = (req, res) => {
             .then((data) => res.json(data))
             .catch((error) => res.json({ message: error}))
     }
-}
+};
 
  const addInvertedHours = async (req,res) =>{
     const { id } = req.params;
@@ -54,7 +54,7 @@ const updateDate = (req, res) => {
         .updateOne({ _id: id}, { $set: { invertedHours }})
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error}))
-}
+};
 
 const updateName = (req, res) => {
     const { id } = req.params;
@@ -63,7 +63,7 @@ const updateName = (req, res) => {
         .updateOne({ _id: id}, { $set: { name }})
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error}))
-}
+};
 
 const updateDescription = (req, res) => {
     const { id } = req.params;
@@ -72,15 +72,15 @@ const updateDescription = (req, res) => {
         .updateOne({ _id: id}, { $set: { description }})
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error}))
-}
+};
 
 module.exports  = {
     postProject,
     getAllProject,
     getById,
-    deleteById,
     updateDate,
     updateDescription,
     updateName,
-    addInvertedHours
+    addInvertedHours,
+    deleteById
 };
