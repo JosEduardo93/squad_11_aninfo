@@ -17,4 +17,16 @@
     npm run start
 ```
 
+## Base de datos
+
+La base de datos que usa este proyecto es MongoDB, para asociar tu base de datos al proyecto se debe crear un archivo `.env` dentro debe contener la variable URL de la siguiente manera 
+
+```
+    URL=<clave de acceso a mongoDB>
+```
+
+## API
+
+Para la visualizacion de las API's se usa `Swagger`, el cual se encuentra documentando en la dirección `/api-doc`
+
 
