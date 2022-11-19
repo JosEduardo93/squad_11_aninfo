@@ -1,3 +1,3 @@
 module.exports = {
-    default: `--publish-quiet'`
+    default: `--parallel 2 --format html:test/cucumber-report.html`
 }

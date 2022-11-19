@@ -30,4 +30,5 @@ La base de datos que usa este proyecto es MongoDB, para asociar tu base de datos
 
 Para la visualizacion de las API's se usa `Swagger`, el cual se encuentra documentando en la dirección `/api-doc`
 
-
+## Cucumber
+Para la visualizacion del reporte de los Tests se usa `Cucumber`, el cual se encuentra documentando en la dirección `/cucumber`, asegurese de haber realizado antes los test y tener la `API` activa.
