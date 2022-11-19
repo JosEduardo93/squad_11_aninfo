@@ -12,9 +12,7 @@ const PORT = process.env.PORT || 8080;
 app.get("/", (req, res) => { 
     res.send("<h2>It's Working!</h2>"); 
 }); 
-app.get('/cucumber', function(req, res) {
-    res.sendFile(path.join(__dirname,'../test/cucumber-report.html'));
-});
+
 // midleware
 app.use(express.json());
 app.use('/api', projectRouter);

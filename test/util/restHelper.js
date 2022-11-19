@@ -18,9 +18,9 @@ const postData = (url, data) => {
     }
 }
 
-const patchData = async (url, data) => {
+const putData = async (url, data) => {
     try {
-        return await axios.patch(url, data);
+        return await axios.put(url, data);
     } catch (e) {
         console.error('exception occurred while PATCH', e);
         throw e;
@@ -39,6 +39,6 @@ const deleteData = async (url, data) => {
 module.exports = {
     getData,
     postData,
-    patchData,
+    putData,
     deleteData
 }
