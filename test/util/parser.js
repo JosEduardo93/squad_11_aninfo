@@ -1,18 +1,20 @@
 const projectSchema = require('../../src/models/project');
 
 const parserData = (data, id) => {
+    const newDate = {};
     data = JSON.parse(data);
-    data._id = id;
-    data.__v = 0;
+    newDate._id = id;
     Object.keys(data).forEach(key => {
+        newDate[key] = data[key]; 
         if(key.includes("Date"))
             try {
-                data[key] = new Date(Date.parse(data[key])).toString();
+                newDate[key] = new Date(Date.parse(data[key])).toISOString();
             } catch (error) {
                 console.error({message : error})
             }
     })
-    return data;
+    newDate.__v = 0;
+    return newDate;
 };
 
 module.exports = parserData;

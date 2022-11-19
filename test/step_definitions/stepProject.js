@@ -9,6 +9,7 @@ var edit;
 var result;
 var id
 
+// 1º escenario
 Given('A project {}', function (request) {
     project = JSON.parse(request);
 });
@@ -22,13 +23,12 @@ Then('I get response code {int}', async function (code) {
     assert.equal(result.status, code);
 });
 
-// 2ª scenario
+// 2ª escenario
 Given('A edit project {} by id', function (request) {
     project = JSON.parse(request);
 });
 
 When('I Edit a Project, send PUT request to {}', async function (path) {
-    console.log(`${path}${id}`);
     result = await restHelper.putData(`${path}${id}/update`, project);
 });
 
@@ -36,10 +36,8 @@ Then('the project was edited, i get response code {int}', async function (code) 
     assert.equal(result.status, code);
 });
 
-// 3ª scenario
-Given('A get project by id', function () {
-    
-});
+// 3ª escenario
+Given('A get project by id', function () {});
 
 When('I get a Project, send GET request to {}', async function(path) {
     result = await restHelper.getData(`${path}${id}`);
@@ -47,8 +45,17 @@ When('I get a Project, send GET request to {}', async function(path) {
 
 Then('I get response data {}, code {int}', async function (response, code) {
     const data = parse(response, id);
-    console.log('result: ',result.data);
-    console.log('data: ',data);
-    //assert.equal(parse(result.data), data);
+    assert(result.data, data);
     assert.equal(result.status, code);
 });
+
+// 4ª escenario
+Given('A Project id', function() {});
+
+When('I delete that id, send DELETE request to {}', async function(path) {
+    result = await restHelper.deleteData(`${path}${id}`);
+});
+
+Then('that Project was deleted, code {int}', async function(code) {
+    assert.equal(result.status, code);
+})

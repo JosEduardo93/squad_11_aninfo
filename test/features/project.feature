@@ -1,10 +1,5 @@
 Feature: Prueba de apis
 
-    # Scenario: Create Project
-    # Given I enter the data to the form correctly
-    # When I submit the form
-    # Then The project is created
-  
     Scenario: create a project
       Given A project <request>
       When I send POST request to http://localhost:8080/api/projects
@@ -32,7 +27,8 @@ Feature: Prueba de apis
       | response                                                                                               |
       | {"name": "PR-ERP","description": "ERP","idealInitDate": "08-10-2002","idealEndDate": "12-10-2003","invertedHours": 10,"initDate": "02-10-2003","endDate": "11-10-2003"}|
    
-    # Scenario: Delete a Project
-    # Given a Project id
-    # When I delete that id
-    # Then that Project was deleted
+    Scenario: Delete a Project
+      Given A Project id
+      When I delete that id, send DELETE request to http://localhost:8080/api/projects/
+      Then 
+      
