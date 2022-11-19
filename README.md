@@ -15,6 +15,7 @@
 ``` 
     npm install
     npm run start
+    npm run cucumber
 ```
 
 ## Base de datos

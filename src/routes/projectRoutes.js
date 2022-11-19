@@ -30,51 +30,8 @@ const router = express.Router();
  *        endDate:
  *          type: string
  *          description: project real end date
- *          
+ *          style: simple
  */
-
-
-/**
- * @swagger
- * /api/projects:
- *  get:
- *   summary: get all projects
- *   tags: [Projects]
- *   responses:
- *      200:
- *        description: new user created!
- *        content:
- *          application/json:
- *            schema:
- *              type: array
- *              items:
- *                $ref: '#components/schemas/Project'
- */
-router.get("/projects", projectController.getAllProject)
-
-/**
- * @swagger
- * /api/projects/{id}:
- *  get:
- *    summary: find project
- *    tags: [Projects]
- *    parameters:
- *      - in: path
- *        name: id
- *        schema:
- *          type: string
- *        require: true
- *        description: the project id
- *    responses:
- *      200:
- *          description: a project
- *          content: 
- *            application/json:
- *              type: object
- *              $ref: '#components/schemas/Project'
-*/
-router.get("/projects/:id", projectController.getById);
-
 
 /**
  * @swagger
@@ -97,6 +54,46 @@ router.get("/projects/:id", projectController.getById);
  */
  router.post("/projects", projectController.postProject);
 
+/**
+ * @swagger
+ * /api/projects:
+ *  get:
+ *   summary: get all projects
+ *   tags: [Projects]
+ *   responses:
+ *      200:
+ *        description: new user created!
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ *                $ref: '#components/schemas/Project'
+ */ 
+router.get("/projects", projectController.getAllProject)
+
+/**
+ * @swagger
+ * /api/projects/{id}:
+ *  get:
+ *    summary: find project
+ *    tags: [Projects]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        require: true
+ *        description: the project id
+ *    responses:
+ *      200:
+ *          description: a project
+ *          content: 
+ *            application/json:
+ *              type: object
+ *              $ref: '#components/schemas/Project'
+*/ 
+router.get("/projects/:id", projectController.getById);
 
 /**
  * @swagger
@@ -117,21 +114,7 @@ router.get("/projects/:id", projectController.getById);
  *        application/json:
  *          schema: 
  *              type: object
- *              properties:
- *                  name: 
- *                      type: string
- *                  description: 
- *                      type: string
- *                  idealInitDate:
- *                      type: string
- *                  idealEndDate:
- *                      type: string
- *                  invertedHours:
- *                      type: integer
- *                  initDate:
- *                      type: string
- *                  endDate:
- *                      type: string
+ *              $ref: '#components/schemas/Project'
  *    responses:
  *      200:
  *        description: project updated
@@ -139,13 +122,7 @@ router.get("/projects/:id", projectController.getById);
  *        description: userNotFound
  */
  router.put("/projects/:id/update", projectController.updateProject);
-
-
  ////////
-
-
-
-
 
 /**
  * @swagger
@@ -290,4 +267,4 @@ router.put("/projects/:id/projectName", projectController.updateName);
  */
 router.delete("/projects/:id", projectController.deleteById);
 
-module.exports = router
+module.exports = router;
