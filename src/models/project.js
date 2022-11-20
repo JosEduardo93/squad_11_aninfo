@@ -1,13 +1,19 @@
 const mongoose = require("mongoose");
+const validator = require("validator");
 
 const projectSchema = mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: [true, 'Name is a required field'],
+    validate(value) {
+      if (!validator.isLength(value, { min: 6, max: 50 })) {
+        throw Error("Length of the name should be between 6-50");
+      }
+    }
   },
   description: {
     type: String,
-    required: true
+    required: [true, 'Descriptions is a required field']
   },
   idealInitDate : {
     type: Date,

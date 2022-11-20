@@ -21,7 +21,7 @@ const postProject = (req, res) => {
     project
       .save()
       .then((data) => res.json(data))
-      .catch((error) => res.json({ message: error }))
+      .catch((error) => res.status(400).json({message: error}));
 };
 
 const updateDate = (req, res) => {

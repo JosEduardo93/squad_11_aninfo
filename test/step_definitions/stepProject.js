@@ -5,8 +5,10 @@ const projectSchema = require('../../src/models/project');
 const parse = require('../util/parser');
 
 var project;
+var badProject;
 var edit;
 var result;
+var badResult;
 var id
 
 // 1º escenario
@@ -58,4 +60,23 @@ When('I delete that id, send DELETE request to {}', async function(path) {
 
 Then('that Project was deleted, code {int}', async function(code) {
     assert.equal(result.status, code);
-})
+});
+
+// 5ª escenario
+Given('A badly loaded project {}', function(request) {
+    badProject = JSON.parse(request);
+});
+
+When('I send a project to POST {}', async function(path) {
+    try {
+        badResult = await restHelper.postData(`${path}`, badProject);
+    } catch (error) {
+        if (error.response){
+            badResult = error.response;
+        }
+    }
+});
+
+Then('It was rejected with code {int}', async function(code) {
+    assert.equal(badResult.status, code);
+});

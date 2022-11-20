@@ -12,9 +12,11 @@ const router = express.Router();
  *        name: 
  *          type: string
  *          description: project name
+ *          required: true
  *        description:
  *          type: string
  *          description: project description
+ *          required: true
  *        idealInitDate:
  *          type: string
  *          description: project ideal init date
