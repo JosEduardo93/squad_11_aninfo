@@ -9,8 +9,9 @@ var badProject;
 var edit;
 var result;
 var badResult;
-var id
-var idError
+var id;
+var idError;
+var pathGet;
 
 // 1º escenario
 Given('A project {}', function (request) {
@@ -53,8 +54,20 @@ Then('I get response data {}, code {int}', async function (response, code) {
 });
 
 // 4º escenario
-Given('A Project id', function() {});
+Given('A Project id', function() {
+});
 
+When('I charge {} hours sending PUT {} hours', async function(value, path) {
+    pathGet = path;
+    result = await restHelper.putData(`${path}${id}/hours`, JSON.parse(value));
+});
+
+Then('The hours invested in the project will be updated a {int}', async function(newValue) {
+    const update = await restHelper.getData(`${pathGet}${id}`);
+    assert.equal(update.data.invertedHours, newValue);
+});
+
+// 5º escenario
 When('I delete that id, send DELETE request to {}', async function(path) {
     result = await restHelper.deleteData(`${path}${id}`);
 });
@@ -63,7 +76,7 @@ Then('that Project was deleted, code {int}', async function(code) {
     assert.equal(result.status, code);
 });
 
-// 5º escenario
+// 6º escenario
 Given('A badly loaded project {}', function(request) {
     badProject = JSON.parse(request);
 });
@@ -82,7 +95,7 @@ Then('It was rejected with code {int}', async function(code) {
     assert.equal(badResult.status, code);
 });
 
-// 6º escenario
+// 7º escenario
 Given('Project {} error', function(id) {
     idError = id;
 });
@@ -97,7 +110,7 @@ When('I send GET {} and not get project', async function(path) {
     }
 });
 
-// 7º escenario
+// 8º escenario
 When('I send DELETE {} and not deleted project', async function(path) {
     try {
         badResult = await restHelper.deleteData(`${path}/${idError}`);

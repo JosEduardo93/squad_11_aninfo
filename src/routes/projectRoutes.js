@@ -57,6 +57,11 @@ const router = express.Router();
  *    responses:
  *      200:
  *        description: new project created
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              $ref: '#components/schemas/Project'
  *      404:
  *        description: failed created
  */
@@ -102,12 +107,7 @@ router.get("/projects", projectController.getAllProject)
  *                  type: object
  *                  $ref: '#components/schemas/Project'
  *      404:
- *          description: not found project
- *          content:
- *             application/json:
- *               schema:
- *                  type: object
- *                  $ref: '#components/schemas/Project' 
+ *          description: not found project 
 */ 
 router.get("/projects/:id", projectController.getById);
 
