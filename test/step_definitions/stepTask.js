@@ -13,7 +13,6 @@ Given('A task {}', function (request) {
     task = JSON.parse(request);
 });
 
-
 When('I want to create it using the post request {}', async function (path) {
     try {
         result = await restHelper.postData(`${path}`, task);
@@ -25,13 +24,13 @@ When('I want to create it using the post request {}', async function (path) {
     }
 });
 
-Then('it is created successfully', async function () {
-    assert.equal(result.status, 200);
+Then('it is created successfully with code {int}', async function (value) {
+    assert.equal(result.status, value);
 });
 
 //2
-Then('the task is not created', async function () {
-    assert.equal(result.status, 404);
+Then('the task is not created with code {int}', async function (value) {
+    assert.equal(result.status, value);
 });
 
 

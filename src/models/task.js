@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const validator = require('validator');
 
 const taskSchema = mongoose.Schema({
     name: {
@@ -14,7 +15,7 @@ const taskSchema = mongoose.Schema({
         required: [true, 'description is a required field'],
         validate(value) {
           if (!validator.isLength(value, { min: 1, max: 1000 })) {
-            throw Error("Length of the name should be between 6-50");
+            throw Error("Length of the name should be between 1-1000");
           }
       }},
       idealInitDate : {

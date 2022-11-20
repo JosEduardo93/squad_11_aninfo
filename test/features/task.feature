@@ -3,7 +3,7 @@ Feature: Prueba de apis
     Scenario: create a task
       Given A task <request>
       When I want to create it using the post request http://localhost:8080/api/tasks
-      Then it is created successfully
+      Then it is created successfully with code 200
 
     Examples:
       | request                                                                                               |
@@ -12,7 +12,7 @@ Feature: Prueba de apis
     Scenario: create task without data required
       Given A task <request> 
       When I want to create it using the post request http://localhost:8080/api/tasks
-      Then the task is not created
+      Then the task is not created with code 400
 
     Examples:
       | request                                                                                               |
@@ -24,7 +24,7 @@ Feature: Prueba de apis
       Then the task was edited, i get response code 200 
 
     Examples:
-      | request                                                                                               |
+      | request         |
       | { "hours": 20 }|
    
     Scenario: get a Task 
