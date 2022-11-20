@@ -31,7 +31,7 @@ const deleteData = async (url, data) => {
     try {
         return await axios.delete(url);
     } catch (e) {
-        console.error('exception occurred while DELETE', e);
+        // console.error('exception occurred while DELETE', e);
         throw e;
     }
 }

@@ -10,6 +10,7 @@ var edit;
 var result;
 var badResult;
 var id
+var idError
 
 // 1º escenario
 Given('A project {}', function (request) {
@@ -25,7 +26,7 @@ Then('I get response code {int}', async function (code) {
     assert.equal(result.status, code);
 });
 
-// 2ª escenario
+// 2º escenario
 Given('A edit project {} by id', function (request) {
     project = JSON.parse(request);
 });
@@ -38,7 +39,7 @@ Then('the project was edited, i get response code {int}', async function (code) 
     assert.equal(result.status, code);
 });
 
-// 3ª escenario
+// 3º escenario
 Given('A get project by id', function () {});
 
 When('I get a Project, send GET request to {}', async function(path) {
@@ -51,7 +52,7 @@ Then('I get response data {}, code {int}', async function (response, code) {
     assert.equal(result.status, code);
 });
 
-// 4ª escenario
+// 4º escenario
 Given('A Project id', function() {});
 
 When('I delete that id, send DELETE request to {}', async function(path) {
@@ -62,7 +63,7 @@ Then('that Project was deleted, code {int}', async function(code) {
     assert.equal(result.status, code);
 });
 
-// 5ª escenario
+// 5º escenario
 Given('A badly loaded project {}', function(request) {
     badProject = JSON.parse(request);
 });
@@ -79,4 +80,30 @@ When('I send a project to POST {}', async function(path) {
 
 Then('It was rejected with code {int}', async function(code) {
     assert.equal(badResult.status, code);
+});
+
+// 6º escenario
+Given('Project {} error', function(id) {
+    idError = id;
+});
+
+When('I send GET {} and not get project', async function(path) { 
+    try {
+        badResult = await restHelper.postData(`${path}/${idError}`, badProject);
+    } catch (error) {
+        if (error.response){
+            badResult = error.response;
+        }
+    }
+});
+
+// 7º escenario
+When('I send DELETE {} and not deleted project', async function(path) {
+    try {
+        badResult = await restHelper.deleteData(`${path}/${idError}`);
+    } catch (error) {
+        if (error.response){
+            badResult = error.response;
+        }
+    }
 });

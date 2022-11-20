@@ -13,27 +13,57 @@ const projectSchema = mongoose.Schema({
   },
   description: {
     type: String,
-    required: [true, 'Descriptions is a required field']
+    required: [true, 'Descriptions is a required field'],
+    validate(value) {
+      if (!validator.isLength(value, {min: 1, max: 1000})) {
+        throw Error("The description cannot be empty, the maximum number of characters is 1000");
+      }
+    }
   },
   idealInitDate : {
     type: Date,
-    required : true
+    required : true,
+    default: Date.now,
+    validate(value) {
+      if (!validator.isDate(value)) {
+        throw Error("Format date error");
+      }
+    }
   },
   idealEndDate:{
     type: Date,
-    required: true
+    required: true,
+    default: Date.now,
+    validate(value) {
+      if (!validator.isDate(value)) {
+        throw Error("Format date error");
+      }
+    }
   },
   invertedHours : {
     type : Number, // deberia arrancar siempre en 0
-    required: true
+    default: 0,
+    required: false
   },
   initDate: {
     type: Date,
-    required: false
+    required: false, 
+    default: Date.now,
+    validate(value) {
+      if (!validator.isDate(value)) {
+        throw Error("Format date error");
+      }
+    }
   },
   endDate: {
     type: Date,
-    required : false
+    required : false,
+    default: Date.now,
+    validate(value) {
+      if (!validator.isDate(value)) {
+        throw Error("Format date error");
+      }
+    }
   }
 });
 

@@ -13,27 +13,33 @@ const router = express.Router();
  *          type: string
  *          description: project name
  *          required: true
+ *          default: Project-Name
  *        description:
  *          type: string
  *          description: project description
  *          required: true
+ *          default: Description project
  *        idealInitDate:
  *          type: string
  *          description: project ideal init date
+ *          format: date-time
  *        idealEndDate:
  *          type: string
  *          description: project ideal end date
+ *          format: date-time
  *        invertedHours:
  *          type: integer
  *          description: project inverted hours
+ *          default: 0
  *        initDate:
  *          type: string
  *          description: project real init date
+ *          format: date-time
  *        endDate:
  *          type: string
  *          description: project real end date
- *          style: simple
- */
+ *          format: date-time
+  */
 
 /**
  * @swagger
@@ -92,8 +98,16 @@ router.get("/projects", projectController.getAllProject)
  *          description: a project
  *          content: 
  *            application/json:
- *              type: object
- *              $ref: '#components/schemas/Project'
+ *              schema:
+ *                  type: object
+ *                  $ref: '#components/schemas/Project'
+ *      404:
+ *          description: not found project
+ *          content:
+ *             application/json:
+ *               schema:
+ *                  type: object
+ *                  $ref: '#components/schemas/Project' 
 */ 
 router.get("/projects/:id", projectController.getById);
 
@@ -148,8 +162,10 @@ router.get("/projects/:id", projectController.getById);
  *              properties:
  *                  initDate: 
  *                      type: string
+ *                      format: date-time
  *                  endDate: 
  *                      type: string
+ *                      format: date-time
  *    responses:
  *      200:
  *        description: user update
@@ -180,6 +196,7 @@ router.put("/projects/:id/dates", projectController.updateDate);
  *              properties:
  *                  hours:
  *                      type: integer
+ *                      default: 0
  *    responses:
  *      200:
  *        description: add inverted hours
@@ -209,7 +226,8 @@ router.put("/projects/:id/hours", projectController.addInvertedHours)
  *              type: object
  *              properties:
  *                  description: 
- *                      type: string                  
+ *                      type: string
+ *                      default: Description project                   
  *    responses:
  *      200:
  *        description: project description update
@@ -239,7 +257,8 @@ router.put("/projects/:id/description", projectController.updateDescription);
  *              type: object
  *              properties:
  *                  name: 
- *                      type: string                  
+ *                      type: string
+ *                      default: Project-Name                  
  *    responses:
  *      200:
  *        description: project name update

@@ -13,7 +13,7 @@ const getById = (req, res) => {
     projectSchema
     .findById(id)
     .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }))
+    .catch((error) => res.status(404).json({ message: error }))
 };
 
 const postProject = (req, res) => {
@@ -42,7 +42,7 @@ const updateDate = (req, res) => {
     projectSchema
         .updateOne({ _id: id}, { $set: toUpdate })
         .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error}))
+        .catch((error) => res.status(404).json({ message: error}))
 };
 
  const addInvertedHours = async (req,res) =>{
@@ -53,7 +53,7 @@ const updateDate = (req, res) => {
     projectSchema
         .updateOne({ _id: id}, { $set: { invertedHours }})
         .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error}))
+        .catch((error) => res.status(404).json({ message: error}))
 };
 
 const updateName = (req, res) => {
@@ -62,7 +62,7 @@ const updateName = (req, res) => {
     projectSchema
         .updateOne({ _id: id}, { $set: { name }})
         .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error}))
+        .catch((error) => res.status(404).json({ message: error}))
 };
 
 const updateDescription = (req, res) => {
@@ -71,7 +71,7 @@ const updateDescription = (req, res) => {
     projectSchema
         .updateOne({ _id: id}, { $set: { description }})
         .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error}))
+        .catch((error) => res.status(404).json({ message: error}))
 };
 
 const updateProject = (req, res) => {
@@ -92,7 +92,7 @@ const updateProject = (req, res) => {
     projectSchema
         .updateOne({ _id: id}, { $set: toUpdate })
         .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error}))
+        .catch((error) => res.status(404).json({ message: error}))
 }
 
 const deleteById = (req, res) => {
@@ -100,7 +100,7 @@ const deleteById = (req, res) => {
     projectSchema
       .remove({_id : id})
       .then((data) => res.json(data))
-      .catch((error) => res.json({ message: error }))
+      .catch((error) => res.status(404).json({ message: error }))
   };
 
 module.exports  = {
