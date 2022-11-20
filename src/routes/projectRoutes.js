@@ -43,6 +43,33 @@ const router = express.Router();
 
 /**
  * @swagger
+ * components:
+ *  schemas:
+ *    ProjectPost:
+ *      type: object
+ *      properties:
+ *        name: 
+ *          type: string
+ *          description: project name
+ *          required: true
+ *          default: Project-Name
+ *        description:
+ *          type: string
+ *          description: project description
+ *          required: true
+ *          default: Description project
+ *        idealInitDate:
+ *          type: string
+ *          description: project ideal init date
+ *          format: date-time
+ *        idealEndDate:
+ *          type: string
+ *          description: project ideal end date
+ *          format: date-time
+*/
+
+/**
+ * @swagger
  * /api/projects:
  *  post:
  *    summary: create a new user
@@ -53,7 +80,7 @@ const router = express.Router();
  *        application/json:
  *          schema:
  *            type: object
- *            $ref: '#components/schemas/Project'
+ *            $ref: '#components/schemas/ProjectPost'
  *    responses:
  *      200:
  *        description: new project created
