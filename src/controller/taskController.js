@@ -22,7 +22,7 @@ const postTask = (req, res) => {
     task
         .save()
         .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error}))
+        .catch((error) => res.status(404).json({ message: error}))
 };
 
 const updateDate = (req, res) => {
