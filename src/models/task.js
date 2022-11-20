@@ -3,39 +3,72 @@ const mongoose = require("mongoose");
 const taskSchema = mongoose.Schema({
     name: {
         type: String,
-        required: true,
-      },
+        required: [true, 'name is a required field'],
+        validate(value) {
+          if (!validator.isLength(value, { min: 6, max: 50 })) {
+            throw Error("Length of the name should be between 6-50");
+          }
+      }},
       description: {
         type: String,
-        required: true
-      },
+        required: [true, 'description is a required field'],
+        validate(value) {
+          if (!validator.isLength(value, { min: 1, max: 1000 })) {
+            throw Error("Length of the name should be between 6-50");
+          }
+      }},
       idealInitDate : {
         type: Date,
-        required : true
-      },
+        required : true,
+        default: Date.now,
+        validate(value) {
+          if (!validator.isDate(value)) {
+            throw Error("Format date error");
+        }
+      }},
       idealEndDate: {
         type: Date,
-        required: true
-      },
+        required : true,
+        default: Date.now,
+        validate(value) {
+          if (!validator.isDate(value)) {
+            throw Error("Format date error");
+        }
+      }},
       responsible: {
-        type: String, //TODO: debería recibir un tipo User
+        type: String, //TODO: Recibe de la api de recursos [supongo un id de squad]
+        default : 'notAssigned',
         required: false
       },
       invertedHours : {
-        type : Number, // deberia arrancar siempre en 0
-        required: true
+        type : Number,
+        default: 0,
+        required: false
       },
       initDate: {
         type: Date,
-        required: false
+        required: false, 
+        default: Date.now,
+        validate(value) {
+          if (!validator.isDate(value)) {
+            throw Error("Format date error");
+          }
+        }
       },
       endDate: {
         type: Date,
-        required : false
+        required : false,
+        default: Date.now,
+        validate(value) {
+          if (!validator.isDate(value)) {
+            throw Error("Format date error ");
+          }
+        }
       },
       status: {
         type: String,
-        required : false
+        required : false,
+        default : "notStarted"
       }
 });
 

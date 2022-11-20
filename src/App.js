@@ -10,7 +10,9 @@ const PORT = process.env.PORT || 8080;
 
 // For testing purposes 
 app.get("/", (req, res) => { 
-    res.send("<h2>It's Working!</h2>"); 
+    res.send("<h2>Squad 11 - Modulo de proyectos</h2>\
+              <a href='https://github.com/JosEduardo93/squad_11_aninfo/'> <p>Link al repositorio</p></a>\
+              <a href='/api-doc'><p>Link a la documentacion Swagger de la api</p></a>"); 
 }); 
 
 // midleware
