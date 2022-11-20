@@ -103,6 +103,24 @@ const deleteById = (req, res) => {
       .catch((error) => res.status(404).json({ message: error }))
   };
 
+const updateAssignedClient = (req, res) => {
+    const { id } = req.params;
+    const {assignedClient} = req.body
+    projectSchema
+        .updateOne({_id : id} , {$set : {assignedClient}})
+        .then((data) => res.json(data))
+        .catch((error) => res.status(404).json({ message: error}))
+};
+
+const updateStatus = (req, res) => {
+    const { id } = req.params;
+    const {status} = req.body
+    projectSchema
+        .updateOne({_id : id} , {$set : {status}})
+        .then((data) => res.json(data))
+        .catch((error) => res.status(404).json({ message: error}))
+};
+
 module.exports  = {
     postProject,
     getAllProject,
@@ -112,5 +130,7 @@ module.exports  = {
     updateName,
     addInvertedHours,
     deleteById,
-    updateProject
+    updateProject,
+    updateAssignedClient,
+    updateStatus
 };

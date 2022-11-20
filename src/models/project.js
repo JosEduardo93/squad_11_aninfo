@@ -41,7 +41,7 @@ const projectSchema = mongoose.Schema({
     }
   },
   invertedHours : {
-    type : Number, // deberia arrancar siempre en 0
+    type : Number, 
     default: 0,
     required: false
   },
@@ -64,6 +64,16 @@ const projectSchema = mongoose.Schema({
         throw Error("Format date error");
       }
     }
+  },
+  assignedClient: {
+    type: Number,
+    required: false, // A analizar
+    default: -1
+  },
+  status: {
+    type: String,
+    required: false,
+    default: "notStarted"
   }
 });
 

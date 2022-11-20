@@ -72,7 +72,7 @@ const router = express.Router();
  * @swagger
  * /api/projects:
  *  post:
- *    summary: create a new user
+ *    summary: create a new project
  *    tags: [Projects]
  *    requestBody:
  *      required: true
@@ -102,7 +102,7 @@ const router = express.Router();
  *   tags: [Projects]
  *   responses:
  *      200:
- *        description: new user created!
+ *        description: all clients listed
  *        content:
  *          application/json:
  *            schema:
@@ -150,7 +150,7 @@ router.get("/projects/:id", projectController.getById);
  *        schema:
  *          type: string
  *        required: true
- *        description: the user id
+ *        description: the project id
  *    requestBody:
  *      required: true
  *      content: 
@@ -162,7 +162,7 @@ router.get("/projects/:id", projectController.getById);
  *      200:
  *        description: project updated
  *      404:
- *        description: userNotFound
+ *        description: projectNotFound
  */
  router.put("/projects/:id/update", projectController.updateProject);
  ////////
@@ -171,7 +171,7 @@ router.get("/projects/:id", projectController.getById);
  * @swagger
  * /api/projects/{id}/dates:
  *  put:
- *    summary: update a user
+ *    summary: update project dates
  *    tags: [Projects]
  *    parameters:
  *      - in: path
@@ -179,7 +179,7 @@ router.get("/projects/:id", projectController.getById);
  *        schema:
  *          type: string
  *        required: true
- *        description: the user id
+ *        description: the project id
  *    requestBody:
  *      required: true
  *      content: 
@@ -205,7 +205,7 @@ router.put("/projects/:id/dates", projectController.updateDate);
  * @swagger
  * /api/projects/{id}/hours:
  *  put:
- *    summary: add work hours
+ *    summary: add work hours of a project
  *    tags: [Projects]
  *    parameters:
  *      - in: path
@@ -244,7 +244,7 @@ router.put("/projects/:id/hours", projectController.addInvertedHours)
  *        schema:
  *          type: string
  *        required: true
- *        description: the user id
+ *        description: the project id
  *    requestBody:
  *      required: true
  *      content: 
@@ -275,7 +275,7 @@ router.put("/projects/:id/description", projectController.updateDescription);
  *        schema:
  *          type: string
  *        required: true
- *        description: the user id
+ *        description: the project id
  *    requestBody:
  *      required: true
  *      content: 
@@ -314,5 +314,67 @@ router.put("/projects/:id/projectName", projectController.updateName);
  *        description: project not found
  */
 router.delete("/projects/:id", projectController.deleteById);
+
+/**
+ * @swagger
+ * /api/projects/{id}/assingedClient:
+ *  put:
+ *    summary: update a project client
+ *    tags: [Projects]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: the project id
+ *    requestBody:
+ *      required: true
+ *      content: 
+ *        application/json:
+ *          schema: 
+ *              type: object
+ *              properties:
+ *                  client: 
+ *                      type: integer
+ *                      default: Project-Name                  
+ *    responses:
+ *      200:
+ *        description: project name update
+ *      404:
+ *        description: project not found
+ */
+ router.put("/projects/:id/assignedClient", projectController.updateAssignedClient);
+
+ /**
+ * @swagger
+ * /api/projects/{id}/status:
+ *  put:
+ *    summary: update a project status
+ *    tags: [Projects]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: the project id
+ *    requestBody:
+ *      required: true
+ *      content: 
+ *        application/json:
+ *          schema: 
+ *              type: object
+ *              properties:
+ *                  status: 
+ *                      type: string
+ *                      default: Project-Name                  
+ *    responses:
+ *      200:
+ *        description: project name update
+ *      404:
+ *        description: project not found
+ */
+router.put("/projects/:id/projectName", projectController.updateStatus);
 
 module.exports = router;
