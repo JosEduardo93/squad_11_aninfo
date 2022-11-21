@@ -39,34 +39,14 @@ const router = express.Router();
  *          type: string
  *          description: project real end date
  *          format: date-time
-  */
-
-/**
- * @swagger
- * components:
- *  schemas:
- *    ProjectPost:
- *      type: object
- *      properties:
- *        name: 
+ *        assignedClient:
+ *          type: integer
+ *          description: client id
+ *        status:
  *          type: string
- *          description: project name
- *          required: true
- *          default: Project-Name
- *        description:
- *          type: string
- *          description: project description
- *          required: true
- *          default: Description project
- *        idealInitDate:
- *          type: string
- *          description: project ideal init date
- *          format: date-time
- *        idealEndDate:
- *          type: string
- *          description: project ideal end date
- *          format: date-time
-*/
+ *          description: project status
+ *          default: notStarted
+ */
 
 /**
  * @swagger
@@ -80,7 +60,24 @@ const router = express.Router();
  *        application/json:
  *          schema:
  *            type: object
- *            $ref: '#components/schemas/ProjectPost'
+ *            properties:
+ *             name: 
+ *                type: string
+ *                default: Project-Name
+ *             description:
+ *                 type: string
+ *                 default: Project description
+ *             initDate: 
+ *                 type: string
+ *                 format: date-time
+ *             endDate: 
+ *                 type: string
+ *                 format: date-time
+ *             assignedClient:
+ *                 type: integer
+ *             status:
+ *                 type: string
+ *                 default: notStarted 
  *    responses:
  *      200:
  *        description: new project created
