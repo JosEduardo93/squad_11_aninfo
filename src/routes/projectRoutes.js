@@ -75,9 +75,6 @@ const router = express.Router();
  *                 format: date-time
  *             assignedClient:
  *                 type: integer
- *             status:
- *                 type: string
- *                 default: notStarted 
  *    responses:
  *      200:
  *        description: new project created
