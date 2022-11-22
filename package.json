@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "nodemon src/App.js",
-    "cucumber": "cucumber-js test/features/*.feature --require test/step_definitions/*.js --config test/cucumber.js"
+    "cucumber": "cucumber-js test/features/*.feature --require test/step_definitions/*.js --config test/cucumber.js",
+    "cucumber-linux": "cucumber-js test/features/*.feature --require test/step_definitions/'*.js' --config test/cucumber.js"
   },
   "repository": {
     "type": "git",
