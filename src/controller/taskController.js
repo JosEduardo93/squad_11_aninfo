@@ -25,25 +25,25 @@ const postTask = (req, res) => {
         .catch((error) => res.status(400).json({ message: error}))
 };
 
-const updateDate = (req, res) => {
+const updateTask = (req, res) => {
     const { id } = req.params;
-    let toUpdate = req.body;
+    let toUpdate  = req.body;
     
     Object.keys(toUpdate).forEach(key => {
-        if(toUpdate[key])
+        if(key.includes("Date"))
             try {
                 Date.parse(toUpdate[key])
-            } 
-            catch (error){
-                res.json({ message : error})
+            } catch (error) {
+                res.json({message : error})
             }
-        else
-            delete toUpdate[key];         
-    });
+        if(!toUpdate[key])    
+            delete toUpdate[key]
+    })
+
     taskSchema
         .updateOne({ _id: id}, { $set: toUpdate })
         .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error}))
+        .catch((error) => res.status(404).json({ message: error}))
 };
 
 const addInvertedHours = async (req,res) =>{
@@ -58,38 +58,11 @@ const addInvertedHours = async (req,res) =>{
         .catch((error) => res.json({ message: error}))
 };
 
-const updateName = (req, res) => {
-    const { id } = req.params;
-    const { name} = req.body;
-    taskSchema
-        .updateOne({ _id: id}, { $set: { name }})
-        .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error}))
-};
-
-const updateDescription = (req, res) => {
-    const { id } = req.params;
-    const { description } = req.body;
-    taskSchema
-        .updateOne({ _id: id}, { $set: { description }})
-        .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error}))
-};
-
-const updateResponsible = (req, res) => {
-    const { id } = req.params;
-    const { responsible } = req.body;
-    taskSchema
-        .updateOne({ _id: id}, { $set: {description}})
-        .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error}))
-};
-
 const updateStatus = (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
     taskSchema
-        .updateOne({ _id: id}, { $set: {status}})
+        .findOneAndUpdate({ _id: id}, { $set: {status}})
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error}))
 };
@@ -107,10 +80,7 @@ module.exports  = {
     getAllTasks,
     getTaskById,
     deleteById,
-    updateDate,
-    updateDescription,
-    updateName,
     updateStatus,
     addInvertedHours,
-    updateResponsible
+    updateTask
 };

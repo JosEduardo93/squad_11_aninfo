@@ -70,6 +70,10 @@ const taskSchema = mongoose.Schema({
         type: String,
         required : false,
         default : "notStarted"
+      },
+      projectID: {
+        type: String,
+        required : true
       }
 });
 

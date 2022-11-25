@@ -35,7 +35,10 @@ const router = express.Router();
  *          description: task real end date
  *        status:
  *          type: string
- *          description: task state         
+ *          description: task state
+ *        projectID:
+ *          type: string
+ *          description : project assigned to task         
  */
 
 /**
@@ -101,12 +104,11 @@ router.get("/tasks", taskController.getAllTasks);
 */
 router.get("/tasks/:id", taskController.getTaskById);
 
-
 /**
  * @swagger
- * /api/tasks/{id}/dates:
+ * /api/tasks/{id}:
  *  put:
- *    summary: update a date
+ *    summary: update a task
  *    tags: [Tasks]
  *    parameters:
  *      - in: path
@@ -121,18 +123,15 @@ router.get("/tasks/:id", taskController.getTaskById);
  *        application/json:
  *          schema: 
  *              type: object
- *              properties:
- *                  initDate: 
- *                      type: string
- *                  endDate: 
- *                      type: string
+ *              $ref: '#components/schemas/Task'
  *    responses:
  *      200:
- *        description: date update
+ *        description: task updated
  *      404:
- *        description: task not found
+ *        description: TaskNotFound
  */
-router.put("/tasks/:id/dates", taskController.updateDate);
+ router.put("/tasks/:id", taskController.updateTask);
+
 
 /**
  * @swagger
@@ -164,100 +163,12 @@ router.put("/tasks/:id/dates", taskController.updateDate);
  */
 router.put("/tasks/:id/hours", taskController.addInvertedHours)
 
-/**
- * @swagger
- * /api/tasks/{id}/description:
- *  put:
- *    summary: update a task description
- *    tags: [Tasks]
- *    parameters:
- *      - in: path
- *        name: id
- *        schema:
- *          type: string
- *        required: true
- *        description: the task id
- *    requestBody:
- *      required: true
- *      content: 
- *        application/json:
- *          schema: 
- *              type: object
- *              properties:
- *                  description: 
- *                      type: string                  
- *    responses:
- *      200:
- *        description: task description updated
- *      404:
- *        description: task not found
- */
-router.put("/tasks/:id/description", taskController.updateDescription);
 
-/**
- * @swagger
- * /api/tasks/{id}/name:
- *  put:
- *    summary: update a task name
- *    tags: [Tasks]
- *    parameters:
- *      - in: path
- *        name: id
- *        schema:
- *          type: string
- *        required: true
- *        description: the task id
- *    requestBody:
- *      required: true
- *      content: 
- *        application/json:
- *          schema: 
- *              type: object
- *              properties:
- *                  name: 
- *                      type: string                  
- *    responses:
- *      200:
- *        description: task name updated
- *      404:
- *        description: task not found
- */
-router.put("/tasks/:id/name", taskController.updateName);
-
-/**
- * @swagger
- * /api/tasks/{id}/responsible:
- *  put:
- *    summary: update the responsible of a task
- *    tags: [Tasks]
- *    parameters:
- *      - in: path
- *        name: id
- *        schema:
- *          type: string
- *        required: true
- *        description: the task id
- *    requestBody:
- *      required: true
- *      content: 
- *        application/json:
- *          schema: 
- *              type: object
- *              properties:
- *                  responsible: 
- *                      type: string                  
- *    responses:
- *      200:
- *        description: task responsible updated
- *      404:
- *        description: task not found
- */
- router.put("/tasks/:id/responsible", taskController.updateResponsible);
 
 /**
  * @swagger
  * /api/tasks/{id}/status:
- *  put:
+ *  patch:
  *    summary: task update status
  *    tags: [Tasks]
  *    parameters:
@@ -282,7 +193,7 @@ router.put("/tasks/:id/name", taskController.updateName);
  *      404:
  *        description: task not found
  */
-router.put("/tasks/:id/status", taskController.updateStatus);
+router.patch("/tasks/:id/status", taskController.updateStatus);
 
 /**
  * @swagger

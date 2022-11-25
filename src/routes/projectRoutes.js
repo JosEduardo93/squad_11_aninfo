@@ -134,7 +134,7 @@ router.get("/projects/:id", projectController.getById);
 
 /**
  * @swagger
- * /api/projects/{id}/update:
+ * /api/projects/{id}:
  *  put:
  *    summary: update a project
  *    tags: [Projects]
@@ -158,47 +158,13 @@ router.get("/projects/:id", projectController.getById);
  *      404:
  *        description: projectNotFound
  */
- router.put("/projects/:id/update", projectController.updateProject);
- ////////
+ router.put("/projects/:id", projectController.updateProject);
 
-/**
- * @swagger
- * /api/projects/{id}/dates:
- *  put:
- *    summary: update project dates
- *    tags: [Projects]
- *    parameters:
- *      - in: path
- *        name: id
- *        schema:
- *          type: string
- *        required: true
- *        description: the project id
- *    requestBody:
- *      required: true
- *      content: 
- *        application/json:
- *          schema: 
- *              type: object
- *              properties:
- *                  initDate: 
- *                      type: string
- *                      format: date-time
- *                  endDate: 
- *                      type: string
- *                      format: date-time
- *    responses:
- *      200:
- *        description: user update
- *      404:
- *        description: user not found
- */
-router.put("/projects/:id/dates", projectController.updateDate);
 
 /**
  * @swagger
  * /api/projects/{id}/hours:
- *  put:
+ *  patch:
  *    summary: add work hours of a project
  *    tags: [Projects]
  *    parameters:
@@ -226,67 +192,8 @@ router.put("/projects/:id/dates", projectController.updateDate);
  */
 router.put("/projects/:id/hours", projectController.addInvertedHours)
 
-/**
- * @swagger
- * /api/projects/{id}/description:
- *  put:
- *    summary: update a project description
- *    tags: [Projects]
- *    parameters:
- *      - in: path
- *        name: id
- *        schema:
- *          type: string
- *        required: true
- *        description: the project id
- *    requestBody:
- *      required: true
- *      content: 
- *        application/json:
- *          schema: 
- *              type: object
- *              properties:
- *                  description: 
- *                      type: string
- *                      default: Description project                   
- *    responses:
- *      200:
- *        description: project description update
- *      404:
- *        description: project not found
- */
-router.put("/projects/:id/description", projectController.updateDescription);
 
-/**
- * @swagger
- * /api/projects/{id}/projectName:
- *  put:
- *    summary: update a project name by id
- *    tags: [Projects]
- *    parameters:
- *      - in: path
- *        name: id
- *        schema:
- *          type: string
- *        required: true
- *        description: the project id
- *    requestBody:
- *      required: true
- *      content: 
- *        application/json:
- *          schema: 
- *              type: object
- *              properties:
- *                  name: 
- *                      type: string
- *                      default: Project-Name                  
- *    responses:
- *      200:
- *        description: project name update
- *      404:
- *        description: project not found
- */
-router.put("/projects/:id/projectName", projectController.updateName);
+
 
 /**
  * @swagger
@@ -309,36 +216,7 @@ router.put("/projects/:id/projectName", projectController.updateName);
  */
 router.delete("/projects/:id", projectController.deleteById);
 
-/**
- * @swagger
- * /api/projects/{id}/assingedClient:
- *  put:
- *    summary: update a project client
- *    tags: [Projects]
- *    parameters:
- *      - in: path
- *        name: id
- *        schema:
- *          type: string
- *        required: true
- *        description: the project id
- *    requestBody:
- *      required: true
- *      content: 
- *        application/json:
- *          schema: 
- *              type: object
- *              properties:
- *                  client: 
- *                      type: integer
- *                      default: Project-Name                  
- *    responses:
- *      200:
- *        description: project name update
- *      404:
- *        description: project not found
- */
- router.put("/projects/:id/assignedClient", projectController.updateAssignedClient);
+
 
  /**
  * @swagger
@@ -369,6 +247,6 @@ router.delete("/projects/:id", projectController.deleteById);
  *      404:
  *        description: project not found
  */
-router.put("/projects/:id/projectName", projectController.updateStatus);
+router.patch("/projects/:id/projectName", projectController.updateStatus);
 
 module.exports = router;

@@ -24,26 +24,6 @@ const postProject = (req, res) => {
       .catch((error) => res.status(400).json({message: error}));
 };
 
-const updateDate = (req, res) => {
-    const { id } = req.params;
-    let toUpdate = req.body;
-
-    Object.keys(toUpdate).forEach(key => {
-        if(toUpdate[key])
-            try {
-                Date.parse(toUpdate[key])
-            } 
-            catch (error){
-                res.json({ message : error})
-            }
-        else
-            delete toUpdate[key];    
-    });
-    projectSchema
-        .updateOne({ _id: id}, { $set: toUpdate })
-        .then((data) => res.json(data))
-        .catch((error) => res.status(404).json({ message: error}))
-};
 
  const addInvertedHours = async (req,res) =>{
     const { id } = req.params;
@@ -56,23 +36,6 @@ const updateDate = (req, res) => {
         .catch((error) => res.status(404).json({ message: error}))
 };
 
-const updateName = (req, res) => {
-    const { id } = req.params;
-    const { name} = req.body;
-    projectSchema
-        .updateOne({ _id: id}, { $set: { name }})
-        .then((data) => res.json(data))
-        .catch((error) => res.status(404).json({ message: error}))
-};
-
-const updateDescription = (req, res) => {
-    const { id } = req.params;
-    const { description } = req.body;
-    projectSchema
-        .updateOne({ _id: id}, { $set: { description }})
-        .then((data) => res.json(data))
-        .catch((error) => res.status(404).json({ message: error}))
-};
 
 const updateProject = (req, res) => {
     const { id } = req.params;
@@ -95,6 +58,15 @@ const updateProject = (req, res) => {
         .catch((error) => res.status(404).json({ message: error}))
 }
 
+const updateStatus = (req, res) => {
+    const { id } = req.params;
+    const {status} = req.body
+    projectSchema
+        .findOneAndUpdate({_id : id} , {$set : {status}})
+        .then((data) => res.json(data))
+        .catch((error) => res.status(404).json({ message: error}))
+};
+
 const deleteById = (req, res) => {
     const { id } = req.params;
     projectSchema
@@ -103,34 +75,13 @@ const deleteById = (req, res) => {
       .catch((error) => res.status(404).json({ message: error }))
   };
 
-const updateAssignedClient = (req, res) => {
-    const { id } = req.params;
-    const {assignedClient} = req.body
-    projectSchema
-        .updateOne({_id : id} , {$set : {assignedClient}})
-        .then((data) => res.json(data))
-        .catch((error) => res.status(404).json({ message: error}))
-};
-
-const updateStatus = (req, res) => {
-    const { id } = req.params;
-    const {status} = req.body
-    projectSchema
-        .updateOne({_id : id} , {$set : {status}})
-        .then((data) => res.json(data))
-        .catch((error) => res.status(404).json({ message: error}))
-};
 
 module.exports  = {
     postProject,
     getAllProject,
     getById,
-    updateDate,
-    updateDescription,
-    updateName,
     addInvertedHours,
     deleteById,
     updateProject,
-    updateAssignedClient,
     updateStatus
 };
