@@ -35,7 +35,12 @@ Feature: Prueba de apis
       | response                                                                                               |
       | {"name": "Terminar este tp", "description": "hay que terminarlo de una forma u otra","idealInitDate": "11-13-2022","idealEndDate": "12-5-2022","responsible": "yo","invertedHours": 0,"initDate": "11-10-2022","endDate": "12-5-2022","status": "pending"}|
 
-    Scenario: Delete a Project
+    Scenario: By idProject get a task
+      Given A idProject 
+      When I receive all the task associated with a project, I request http://localhost:8080/api/tasks/project/ 
+      Then I get all requested task with code 200
+
+    Scenario: Delete a Task
       Given A Task id
       When I delete a task by its id, send DELETE request to http://localhost:8080/api/tasks/
       Then that task was deleted, code 200

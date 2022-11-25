@@ -33,7 +33,7 @@ Given('A edit project {} by id', function (request) {
 });
 
 When('I Edit a Project, send PUT request to {}', async function (path) {
-    result = await restHelper.putData(`${path}${id}/update`, project);
+    result = await restHelper.putData(`${path}${id}`, project);
 });
 
 Then('the project was edited, i get response code {int}', async function (code) {

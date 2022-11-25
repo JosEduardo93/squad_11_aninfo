@@ -12,33 +12,41 @@ const router = express.Router();
  *        name: 
  *          type: string
  *          description: task name
+ *          default: Task-name
  *        description:
  *          type: string
  *          description: task description
+ *          default: Task description
  *        idealInitDate:
  *          type: string
+ *          format: date-time
  *          description: task ideal init date
  *        idealEndDate:
  *          type: string
+ *          format: date-time
  *          description: task ideal end date
  *        responsible:
  *          type: string
  *          description: person in charge
+ *          default: Name responsible
  *        invertedHours:
  *          type: integer
  *          description: task inverted hours
  *        initDate:
  *          type: string
+ *          format: date-time
  *          description: task real init date
  *        endDate:
  *          type: string
+ *          format: date-time
  *          description: task real end date
  *        status:
  *          type: string
  *          description: task state
  *        projectID:
  *          type: string
- *          description : project assigned to task         
+ *          description : project assigned to task
+ *          pattern: ([xX])?[0-9a-f]{24}
  */
 
 /**
@@ -53,10 +61,33 @@ const router = express.Router();
  *        application/json:
  *          schema:
  *            type: object
- *            $ref: '#components/schemas/Task'
+ *            properties:
+ *              name: 
+ *                type: string
+ *                default: Project-Name
+ *              description:
+ *                 type: string
+ *                 default: Project description
+ *              idealInitDate: 
+ *                 type: string
+ *                 format: date-time
+ *              idealEndDate: 
+ *                 type: string
+ *                 format: date-time
+ *              responsible:
+ *                 type: string
+ *                 default: Name responsible
+ *              projectID:
+ *                 type: string
+ *                 pattern: ([xX])?[0-9a-f]{24}
  *    responses:
  *      200:
  *        description: new task created
+ *        content:
+ *          application/json:
+ *              schema:
+ *                  type: object
+ *                  $ref: '#components/schemas/Task' 
  *      404:
  *        description: failed creating task
  */
@@ -103,6 +134,32 @@ router.get("/tasks", taskController.getAllTasks);
  *              $ref: '#components/schemas/Task'
 */
 router.get("/tasks/:id", taskController.getTaskById);
+
+/**
+ * @swagger
+ * /api/tasks/project/{id}:
+ *  get:
+ *    summary: find all task associated with a project
+ *    tags: [Tasks]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        require: true
+ *        description: the project id
+ *    responses:
+ *      200:
+ *          description: a project
+ *          content: 
+ *            application/json:
+ *              schema:
+ *                  type: object
+ *                  $ref: '#components/schemas/Task'
+ *      404:
+ *          description: not found project 
+*/ 
+router.get("/tasks/project/:id", taskController.getTaskByIdProyect);
 
 /**
  * @swagger
