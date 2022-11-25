@@ -121,9 +121,25 @@ router.get("/tasks/:id", taskController.getTaskById);
  *      required: true
  *      content: 
  *        application/json:
- *          schema: 
- *              type: object
- *              $ref: '#components/schemas/Task'
+ *          schema:
+ *            type: object
+ *            properties:
+ *             name: 
+ *                type: string
+ *             description:
+ *                 type: string
+ *             initDate: 
+ *                 type: string
+ *                 format: date-time
+ *             endDate: 
+ *                 type: string
+ *                 format: date-time
+ *             idealInitDate: 
+ *                 type: string
+ *                 format: date-time
+ *             idealEndDate: 
+ *                 type: string
+ *                 format: date-time 
  *    responses:
  *      200:
  *        description: task updated

@@ -67,10 +67,10 @@ const router = express.Router();
  *             description:
  *                 type: string
  *                 default: Project description
- *             initDate: 
+ *             idealInitDate: 
  *                 type: string
  *                 format: date-time
- *             endDate: 
+ *             idealEndDate: 
  *                 type: string
  *                 format: date-time
  *             assignedClient:
@@ -149,9 +149,26 @@ router.get("/projects/:id", projectController.getById);
  *      required: true
  *      content: 
  *        application/json:
- *          schema: 
- *              type: object
- *              $ref: '#components/schemas/Project'
+ *          schema:
+ *            type: object
+ *            properties:
+ *             name: 
+ *                type: string
+ *             description:
+ *                 type: string
+ *             initDate: 
+ *                 type: string
+ *                 format: date-time
+ *             endDate: 
+ *                 type: string
+ *                 format: date-time
+ *             idealInitDate: 
+ *                 type: string
+ *                 format: date-time
+ *             idealEndDate: 
+ *                 type: string
+ *                 format: date-time  
+ *              
  *    responses:
  *      200:
  *        description: project updated
@@ -164,7 +181,7 @@ router.get("/projects/:id", projectController.getById);
 /**
  * @swagger
  * /api/projects/{id}/hours:
- *  patch:
+ *  put:
  *    summary: add work hours of a project
  *    tags: [Projects]
  *    parameters:
@@ -192,9 +209,6 @@ router.get("/projects/:id", projectController.getById);
  */
 router.put("/projects/:id/hours", projectController.addInvertedHours)
 
-
-
-
 /**
  * @swagger
  * /api/projects/{id}:
@@ -216,12 +230,10 @@ router.put("/projects/:id/hours", projectController.addInvertedHours)
  */
 router.delete("/projects/:id", projectController.deleteById);
 
-
-
  /**
  * @swagger
  * /api/projects/{id}/status:
- *  put:
+ *  patch:
  *    summary: update a project status
  *    tags: [Projects]
  *    parameters:
