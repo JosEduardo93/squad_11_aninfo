@@ -26,9 +26,8 @@ const router = express.Router();
  *          format: date-time
  *          description: task ideal end date
  *        responsible:
- *          type: string
- *          description: person in charge
- *          default: Name responsible
+ *          type: integer
+ *          description: id of person in charge
  *        invertedHours:
  *          type: integer
  *          description: task inverted hours
@@ -75,8 +74,8 @@ const router = express.Router();
  *                 type: string
  *                 format: date-time
  *              responsible:
- *                 type: string
- *                 default: Name responsible
+ *                 type: integer
+ *                 default: 1
  *              projectID:
  *                 type: string
  *                 pattern: ([xX])?[0-9a-f]{24}

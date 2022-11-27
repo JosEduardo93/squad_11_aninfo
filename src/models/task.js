@@ -37,8 +37,8 @@ const taskSchema = mongoose.Schema({
         }
       }},
       responsible: {
-        type: String, //TODO: Recibe de la api de recursos [supongo un id de squad]
-        default : 'notAssigned',
+        type: Number, 
+        default : -1,
         required: false
       },
       invertedHours : {
