@@ -1,6 +1,16 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 
+const states = [
+  "No Iniciado",
+  "Iniciado",
+  "Analisis",
+  "Desarrollo",
+  "Pruebas",
+  "Producción",
+  "Post-Produccion",
+];
+
 const projectSchema = mongoose.Schema({
   name: {
     type: String,
@@ -73,7 +83,12 @@ const projectSchema = mongoose.Schema({
   status: {
     type: String,
     required: false,
-    default: "notStarted"
+    default: "No Iniciado",
+    validate(value) {
+      if (!states.includes(value)) {
+        throw Error("Status error");
+      }
+    }
   }
 });
 

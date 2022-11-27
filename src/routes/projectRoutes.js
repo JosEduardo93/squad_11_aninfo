@@ -45,7 +45,7 @@ const router = express.Router();
  *        status:
  *          type: string
  *          description: project status
- *          default: notStarted
+ *          default: No Iniciado
  */
 
 /**
