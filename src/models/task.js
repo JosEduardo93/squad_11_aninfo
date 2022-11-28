@@ -37,7 +37,7 @@ const taskSchema = mongoose.Schema({
         }
       }},
       responsible: {
-        type: Array,
+        type: [],
         default : [{ "id": "asdasd", "rol": "Develop"}],
         required: false
       },

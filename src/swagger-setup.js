@@ -13,7 +13,8 @@ const options = {
         },
         servers: [
             {
-                url: "https://project-api-kurk.onrender.com"
+                url:
+                "https://project-api-kurk.onrender.com:10000"
                 // "http://localhost:8080"
             }
         ]
@@ -22,8 +23,8 @@ const options = {
 };
 
 module.exports = function(app) {(
-   app.use('/api-doc', 
-   swaggerUi.serve, 
+   app.use('/api-doc',
+   swaggerUi.serve,
    swaggerUi.setup(swaggerJsDoc(options)))
 )};
 
