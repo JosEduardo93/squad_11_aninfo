@@ -10,12 +10,13 @@ const options = {
             version: "1.0.0",
             description:
               "API Module Project - MongoDB",
-        },
-        servers: [
-            {
-                url: "http://localhost:8080"
-            }
-        ]
+        }
+        // ,
+        // servers: [
+        //     {
+        //         url: "http://localhost:8080"
+        //     }
+        // ]
     },
     apis: [`${path.join(__dirname, './routes/*.js')}`],
 };
