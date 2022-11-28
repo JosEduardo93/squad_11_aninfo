@@ -7,8 +7,9 @@ const states = [
   "Analisis",
   "Desarrollo",
   "Pruebas",
-  "Producción",
+  "Produccion",
   "Post-Produccion",
+  "Cancelado"
 ];
 
 const projectSchema = mongoose.Schema({
