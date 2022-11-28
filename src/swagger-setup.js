@@ -13,8 +13,7 @@ const options = {
         },
         servers: [
             {
-                url:
-                "https://project-api-kurk.onrender.com:10000"
+                url: "https://project-api-kurk.onrender.com"
                 // "http://localhost:8080"
             }
         ]
