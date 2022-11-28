@@ -37,8 +37,8 @@ const taskSchema = mongoose.Schema({
         }
       }},
       responsible: {
-        type: Number, 
-        default : -1,
+        type: Array,
+        default : [{ "id": "asdasd", "rol": "Develop"}],
         required: false
       },
       invertedHours : {

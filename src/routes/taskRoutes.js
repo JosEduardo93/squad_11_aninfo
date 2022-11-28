@@ -74,8 +74,8 @@ const router = express.Router();
  *                 type: string
  *                 format: date-time
  *              responsible:
- *                 type: integer
- *                 default: 1
+ *                 type: Array
+ *                 default: [{"id": "ddaadd", "rol": "develop"}]
  *              projectID:
  *                 type: string
  *                 pattern: ([xX])?[0-9a-f]{24}

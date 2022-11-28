@@ -90,6 +90,11 @@ const projectSchema = mongoose.Schema({
         throw Error("Status error");
       }
     }
+  },
+  projectLeader: {
+    type: String,
+    required: false,
+    default: "project-leader"
   }
 });
 
