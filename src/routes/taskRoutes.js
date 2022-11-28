@@ -26,7 +26,16 @@ const router = express.Router();
  *          format: date-time
  *          description: task ideal end date
  *        responsible:
- *          type: integer
+ *          type: array
+ *          items:
+ *              type: object
+ *              properties:
+ *                  id: 
+ *                      type: string
+ *                      default: idRecurso
+ *                  rol:
+ *                      type: string
+ *                      default: Rol recurso
  *          description: id of person in charge
  *        invertedHours:
  *          type: integer
@@ -74,7 +83,7 @@ const router = express.Router();
  *                 type: string
  *                 format: date-time
  *              responsible:
- *                 type: Array
+ *                 type: array
  *                 default: [{"id": "ddaadd", "rol": "develop"}]
  *              projectID:
  *                 type: string
@@ -184,18 +193,25 @@ router.get("/tasks/project/:id", taskController.getTaskByIdProyect);
  *                type: string
  *             description:
  *                 type: string
- *             initDate: 
- *                 type: string
- *                 format: date-time
- *             endDate: 
- *                 type: string
- *                 format: date-time
  *             idealInitDate: 
  *                 type: string
  *                 format: date-time
  *             idealEndDate: 
  *                 type: string
  *                 format: date-time 
+ *             responsible:
+ *                  type: array
+ *                  items:
+ *                      type: object
+ *                      properties:
+ *                          id: 
+ *                              type: string
+ *                              default: idRecurso
+ *                          rol:
+ *                              type: string
+ *                              default: Rol recurso
+ *                      
+ *                 
  *    responses:
  *      200:
  *        description: task updated
@@ -234,8 +250,6 @@ router.get("/tasks/project/:id", taskController.getTaskByIdProyect);
  *        description: hours not added to the task
  */
 router.put("/tasks/:id/hours", taskController.addInvertedHours)
-
-
 
 /**
  * @swagger

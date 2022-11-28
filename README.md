@@ -16,6 +16,7 @@
     npm install
     npm run start
     npm run cucumber
+    npm run cucumber-linux
 ```
 
 ## Base de datos
@@ -31,6 +32,6 @@ Para la ejecucion de la `API`, se debe ejecutar el comando `npm run start`. Para
 Actualmente se encuentra desplegada en el [Siguiente Enlace](https://project-api-kurk.onrender.com/)
 
 ## Cucumber
-Para la ejecucion de los test, se debe ejecutar el comando `npm run cucumber`, es necesario tener la `API` activa al momento de realizarse.
+Para la ejecucion de los test, se debe ejecutar el comando `npm run cucumber`, es necesario tener la `API` activa al momento de realizarse. Revisa el comando en caso de usar un SO Linux
 
 Para la visualizacion del reporte de los Tests se usa `Cucumber`, el cual se encuentra documentando en un archivo html con nombre `cucumber-report`, asegurese de haber realizado antes los test.
