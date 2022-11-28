@@ -13,8 +13,7 @@ const options = {
         },
         servers: [
             {
-                url: "https://project-api-kurk.onrender.com"
-                // "http://localhost:8080"
+                url: "https://squad11-proyectos.onrender.com"
             }
         ]
     },
