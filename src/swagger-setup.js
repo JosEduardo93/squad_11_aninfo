@@ -10,13 +10,13 @@ const options = {
             version: "1.0.0",
             description:
               "API Module Project - MongoDB",
-        }
-        // ,
-        // servers: [
-        //     {
-        //         url: "http://localhost:8080"
-        //     }
-        // ]
+        },
+        servers: [
+            {
+                url: "https://project-api-kurk.onrender.com"
+                // "http://localhost:8080"
+            }
+        ]
     },
     apis: [`${path.join(__dirname, './routes/*.js')}`],
 };
