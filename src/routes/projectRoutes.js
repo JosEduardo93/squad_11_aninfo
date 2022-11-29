@@ -42,6 +42,7 @@ const router = express.Router();
  *        assignedClient:
  *          type: integer
  *          description: client id
+ *          default: 1
  *        status:
  *          type: string
  *          description: project status
@@ -83,6 +84,7 @@ const router = express.Router();
  *                              format: date-time
  *                          assignedClient:
  *                              type: integer
+ *                              default: 1
  *                          type:
  *                              type: string
  *                              default: Desarrollo
