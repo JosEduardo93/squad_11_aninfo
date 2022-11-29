@@ -81,7 +81,7 @@ const router = express.Router();
  *                 format: date-time
  *              responsible:
  *                 type: array
- *                 default: [{"id": "ddaadd", "rol": "develop"}]
+ *                 default: [{"id": 1}]
  *              projectID:
  *                 type: string
  *                 pattern: ([xX])?[0-9a-f]{24}
@@ -129,7 +129,6 @@ router.get("/tasks", taskController.getAllTasks);
  *          type: string
  *        require: true
  *        description: the task id
- *      
  *    responses:
  *      200:
  *          description: a task
@@ -202,13 +201,8 @@ router.get("/tasks/project/:id", taskController.getTaskByIdProyect);
  *                      type: object
  *                      properties:
  *                          id: 
- *                              type: string
+ *                              type: integer
  *                              default: idRecurso
- *                          rol:
- *                              type: string
- *                              default: Rol recurso
- *                      
- *                 
  *    responses:
  *      200:
  *        description: task updated

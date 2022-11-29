@@ -52,55 +52,55 @@ const router = express.Router();
  *          default: Desarrollo
  *        projectLeader:
  *          type: integer
- *          description: Project Leader
- *          default: project-leader
+ *          description: id Project Leader
+ *          default: 1
  */
 
 /**
  * @swagger
  * /api/projects:
  *  post:
- *    summary: create a new project
- *    tags: [Projects]
- *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            type: object
- *            properties:
- *             name: 
- *                type: string
- *                default: Project-Name
- *             description:
- *                 type: string
- *                 default: Project description
- *             idealInitDate: 
- *                 type: string
- *                 format: date-time
- *             idealEndDate: 
- *                 type: string
- *                 format: date-time
- *             assignedClient:
- *                 type: integer
- *             type:
- *                  type: string
- *                  default: Desarrollo
- *              projectLeader:
- *                  type: integer
- *                  default: project-leader
- *    responses:
- *      200:
- *        description: new project created
- *        content:
- *          application/json:
- *            schema:
- *              type: object
- *              $ref: '#components/schemas/Project'
- *      404:
- *        description: failed created
+ *      summary: create a new project
+ *      tags: [Projects]
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                      properties:
+ *                          name: 
+ *                              type: string
+ *                              default: Project-Name
+ *                          description:
+ *                              type: string
+ *                              default: Project description
+ *                          idealInitDate: 
+ *                              type: string
+ *                              format: date-time
+ *                          idealEndDate: 
+ *                              type: string
+ *                              format: date-time
+ *                          assignedClient:
+ *                              type: integer
+ *                          type:
+ *                              type: string
+ *                              default: Desarrollo
+ *                          projectLeader:
+ *                              type: number
+ *                              default: 1
+ *      responses:
+ *          200:
+ *              description: new project created
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          $ref: '#components/schemas/Project'
+ *          404:
+ *              description: failed created
  */
- router.post("/projects", projectController.postProject);
+router.post("/projects", projectController.postProject);
 
 /**
  * @swagger
