@@ -276,6 +276,6 @@ router.delete("/projects/:id", projectController.deleteById);
  *      404:
  *        description: project not found
  */
-router.patch("/projects/:id/projectName", projectController.updateStatus);
+router.patch("/projects/:id/status", projectController.updateStatus);
 
 module.exports = router;
