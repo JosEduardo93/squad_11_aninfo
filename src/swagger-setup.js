@@ -14,6 +14,9 @@ const options = {
         servers: [
             {
                 url: "https://squad11-proyectos.onrender.com"
+            },
+            {
+                url: "http://localhost:8080/"
             }
         ]
     },

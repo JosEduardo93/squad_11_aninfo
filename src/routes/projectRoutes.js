@@ -46,6 +46,14 @@ const router = express.Router();
  *          type: string
  *          description: project status
  *          default: No Iniciado
+ *        type:
+ *          type: string
+ *          description: project type
+ *          default: Desarrollo
+ *        projectLeader:
+ *          type: integer
+ *          description: Project Leader
+ *          default: project-leader
  */
 
 /**
@@ -75,6 +83,12 @@ const router = express.Router();
  *                 format: date-time
  *             assignedClient:
  *                 type: integer
+ *             type:
+ *                  type: string
+ *                  default: Desarrollo
+ *              projectLeader:
+ *                  type: integer
+ *                  default: project-leader
  *    responses:
  *      200:
  *        description: new project created
@@ -167,7 +181,10 @@ router.get("/projects/:id", projectController.getById);
  *                 format: date-time
  *             idealEndDate: 
  *                 type: string
- *                 format: date-time  
+ *                 format: date-time
+ *             type:
+ *                  type: string
+ *                  default: Desarrollo  
  *              
  *    responses:
  *      200:

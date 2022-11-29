@@ -31,11 +31,8 @@ const router = express.Router();
  *              type: object
  *              properties:
  *                  id: 
- *                      type: string
- *                      default: idRecurso
- *                  rol:
- *                      type: string
- *                      default: Rol recurso
+ *                      type: integer
+ *                      default: 1
  *          description: id of person in charge
  *        invertedHours:
  *          type: integer

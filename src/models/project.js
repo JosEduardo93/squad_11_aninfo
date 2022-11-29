@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 
+const typeProject = [
+  "Implementacion",
+  "Desarrollo"
+]
+
 const states = [
   "No Iniciado",
   "Iniciado",
@@ -92,9 +97,19 @@ const projectSchema = mongoose.Schema({
     }
   },
   projectLeader: {
-    type: String,
+    type: Number,
     required: false,
     default: "project-leader"
+  },
+  type: {
+    type: String,
+    required: false,
+    default: "Desarrollo",
+    validate(value) {
+      if (!typeProject.includes(value)) {
+        throw Error("Type Project error");
+      }
+    }
   }
 });
 
