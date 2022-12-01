@@ -29,7 +29,7 @@ La base de datos que usa este proyecto es MongoDB, para asociar tu base de datos
 
 ## API
 Para la ejecucion de la `API`, se debe ejecutar el comando `npm run start`. Para la visualizacion de las API's se usa `Swagger`, el cual se encuentra documentando en la dirección `/api-doc`, debe dirigirse a la direccion de su localhost en el puerto 8080.
-Actualmente se encuentra desplegada en el [Siguiente Enlace](https://project-api-kurk.onrender.com/)
+Actualmente se encuentra desplegada en el [Siguiente Enlace](https://squad11-proyectos.onrender.com/)
 
 ## Cucumber
 Para la ejecucion de los test, se debe ejecutar el comando `npm run cucumber`, es necesario tener la `API` activa al momento de realizarse. Revisa el comando en caso de usar un SO Linux
