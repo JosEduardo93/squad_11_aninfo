@@ -1,4 +1,5 @@
 const express = require("express"); 
+const cors = require("cors")
 const projectRouter = require('./routes/projectRoutes')
 const taskRouter = require('./routes/taskRoutes')
 const mongoose = require('mongoose');
@@ -16,6 +17,7 @@ app.get("/", (req, res) => {
 }); 
 
 // midleware
+app.use(cors());
 app.use(express.json());
 app.use('/api', projectRouter);
 app.use('/api', taskRouter);
