@@ -1,5 +1,6 @@
 const express = require("express"); 
-const cors = require("cors")
+const cors = require("cors");
+const axios = require("axios");
 const projectRouter = require('./routes/projectRoutes')
 const taskRouter = require('./routes/taskRoutes')
 const mongoose = require('mongoose');
@@ -16,29 +17,15 @@ app.get("/", (req, res) => {
               <a href='/api-doc'><p>Link a la documentacion Swagger de la api</p></a>"); 
 }); 
 
-// midleware
+app.get("/clients", (req, res) => {
+  axios({
+    method : "get", 
+    url : "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/clientes-psa/1.0.0/m/api/clientes"
+  }).then((response) => res.send(response.data))
+})
 
-var cors = require('cors'); //import cors module
-
-var whitelist = ['https://squad11-proyectos.onrender.com', 'http://localhost:8080', 'https://project-s11.onrender.com']; //white list consumers
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(null, false);
-    }
-  },
-  methods: ['GET', 'PUT', 'POST', 'DELETE', 'PATCH', 'OPTIONS'],
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-  credentials: true, //Credentials are cookies, authorization headers or TLS client certificates.
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'device-remember-token', 'Access-Control-Allow-Origin', 'Origin', 'Accept']
-};
-
-app.use(cors(corsOptions)); //adding cors middleware to the express with above configurations
-
-
-
+// middleware
+app.use(cors())
 
 app.use(express.json());
 app.use('/api', projectRouter);
