@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const autoIncrement = require('mongoose-auto-increment')
+
+autoIncrement.initialize(mongoose.connection)
 
 const typeProject = [
   "Implementacion",
@@ -18,6 +21,7 @@ const states = [
 ];
 
 const projectSchema = mongoose.Schema({
+  numProject:{ type:Number},
   name: {
     type: String,
     required: [true, 'Name is a required field'],
@@ -113,4 +117,10 @@ const projectSchema = mongoose.Schema({
   }
 });
 
+projectSchema.plugin(autoIncrement.plugin, {
+    model:'Project',
+    field: 'numProject',
+    startAt: 1,
+    incrementBy: 1
+})
 module.exports = mongoose.model('Project', projectSchema);

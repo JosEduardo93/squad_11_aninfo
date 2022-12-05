@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 const validator = require('validator');
+const autoIncrement = require('mongoose-auto-increment')
 
 const taskSchema = mongoose.Schema({
+    numTask:{
+      type:Number
+    },
     name: {
         type: String,
         required: [true, 'name is a required field'],
@@ -77,4 +81,10 @@ const taskSchema = mongoose.Schema({
     }
 });
 
+taskSchema.plugin(autoIncrement.plugin, {
+  model:'Task',
+  field: 'numTask',
+  startAt: 1,
+  incrementBy: 1
+})
 module.exports = mongoose.model('Task', taskSchema);
