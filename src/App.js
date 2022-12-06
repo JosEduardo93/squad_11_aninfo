@@ -1,5 +1,6 @@
 const express = require("express"); 
 const cors = require("cors")
+const axios = require("axios")
 const projectRouter = require('./routes/projectRoutes')
 const taskRouter = require('./routes/taskRoutes')
 const mongoose = require('mongoose');
@@ -24,6 +25,18 @@ app.use(express.json());
 app.use('/api', projectRouter);
 app.use('/api', taskRouter);
 require('./swagger-setup')(app);
+
+
+app.use("/clientes", (req, res) => {
+  axios({
+    method: 'get',
+    url: "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/clientes-psa/1.0.0/m/api/clientes",
+    headers : {
+      'Access-Control-Allow-Origin': "*"
+    }
+  })
+  .then(response => res.send(response.data))
+})
 
 // connection to MongoDB
 mongoose
